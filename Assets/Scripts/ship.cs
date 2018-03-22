@@ -10,7 +10,9 @@ public class ship : MonoBehaviour
     public GameObject bullet;
 
     private float mLastShot=-10000;
-
+    
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -27,11 +29,12 @@ public class ship : MonoBehaviour
             // requires the magic 90f subtraction
             var angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg - 90f;
             // Do something with the angle here.
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.root.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             var direction = new Vector3(x, y);
             // here we multiply our input vector by our speed value.
-            transform.position += direction * Speed * Time.deltaTime;
+            transform.root.position += direction * Speed * Time.deltaTime;
+
         }
         
         if ((Math.Abs(x2) > .0001f || Math.Abs(y2) > .0001f) && Time.time - mLastShot >= FireRate)
@@ -54,7 +57,7 @@ public class ship : MonoBehaviour
         newSprite.transform.localScale = new Vector3(.5f, .5f);
         var bulletComponent = newSprite.GetComponent<Bullet>();
         bulletComponent.BulletSpeed = this.BulletSpeed;
-        bulletComponent.Direction = direction;
+        bulletComponent.SetDirection(direction);
 
         return newSprite;
     }
