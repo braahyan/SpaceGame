@@ -7,11 +7,6 @@ public class DropsLoot : MonoBehaviour, IDeath
 
 	public GameObject DeathSpawn;
 
-	protected void Start()
-	{
-		//this.Spawner = 
-	}
-
 	public void Die()
 	{
 		var dspawn = Instantiate(DeathSpawn);
