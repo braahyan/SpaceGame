@@ -2,32 +2,10 @@ using UnityEngine;
 
 public class Bullet : ShipBase
 {
-    private float Time { get; set; }
-    private Vector3 Direction;
-    public float Lifetime = 3.0f;
-
-    public void SetDirection(Vector3 direction)
+    protected override void Update()
     {
-        this.Direction = direction;
-    }
-    
-    public new void Start()
-    {
-        this.Time = UnityEngine.Time.time;
-        base.Start();
+        Move(Direction.x, Direction.y);
     }
 
-    protected override bool IsHostileTo(ShipBase shipbase)
-    {
-        return shipbase.CompareTag("Enemy");;
-    }
-
-    public void Update()
-    {
-        if (UnityEngine.Time.time - Time >= Lifetime)
-        {
-            this.HP = 0;
-        }
-        this.Move(Direction.x, Direction.y);
-    }
+    public Vector3 Direction { get; set; }
 }

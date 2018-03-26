@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212309267139539164}
   - component: {fileID: 114201442251832678}
   - component: {fileID: 61177120789574030}
-  - component: {fileID: 50443906172251008}
   - component: {fileID: 82354054339854284}
+  - component: {fileID: 114145934322909968}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -38,32 +38,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1842121654847852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3984656, y: 0.17270938, z: 0}
+  m_LocalPosition: {x: -20.170282, y: -2.8016398, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50443906172251008
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1842121654847852}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &61177120789574030
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -80,14 +60,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.89, y: 0.89}
+    oldSize: {x: 1.13, y: 1.88}
     newSize: {x: 0.89, y: 0.89}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48, y: 0.89}
+  m_Size: {x: 0.66, y: 1.56}
   m_EdgeRadius: 0
 --- !u!82 &82354054339854284
 AudioSource:
@@ -169,6 +149,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114145934322909968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1842121654847852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dae809dab9d4bd8ac7504b4770c6e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  ExplosionSound: {fileID: 0}
+  HitSound: {fileID: 0}
+  DestroyOnDeath: 1
+  Regenerate: 1
+  RegenerateDelay: 5
+  RegenerateAmount: 5
+  CollisionDamage: 1
+  HasLifetime: 0
+  Lifetime: 3
+  HUD: 1
+  Location:
+    serializedVersion: 2
+    x: 10
+    y: 10
+    width: 100
+    height: 100
+  Name: Hull
 --- !u!114 &114201442251832678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,9 +191,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3
   TrackingSpeed: 5
+  Acceleration: 3
+  CollisionDamage: 1
   BulletSpeed: 10
-  FireRate: 0.05
+  FireRate: 0.5
   bullet: {fileID: 1043824640310162, guid: c15c7121e1ff5414dbc0b42084940b5e, type: 2}
+  LaserSound: {fileID: 82354054339854284}
 --- !u!212 &212309267139539164
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -219,7 +231,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: efb3e04520c4cee459b0ab1a8e0633da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0760efab2dfc9b643957c790367c94d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
