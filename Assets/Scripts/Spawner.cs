@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     public float SpawnTime;
 
     public GameObject Subject;
+    private ShipBase mShipBase;
 
     // Use this for initialization
     private void Start()
@@ -26,7 +27,7 @@ public class Spawner : MonoBehaviour
         {
             LastSpawn = Time.time;
             var obj = Instantiate(Subject);
-            Subject.transform.position = transform.position;
+            obj.transform.position = transform.position;
             mSpawned.Add(obj);
         }
 

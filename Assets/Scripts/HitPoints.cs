@@ -89,8 +89,8 @@ public class HitPoints : MonoBehaviour
         return !shipbase.CompareTag(tag);
     }
 
-    public void OnTriggerEnter2D(Collider2D coll)
-    {
+    private void OnCollisionEnter2D(Collision2D coll){
+    
         var hitPoints = coll.gameObject.GetComponent<HitPoints>();
         if (hitPoints != null && hitPoints.IsHostileTo(this) && (HitSound == null || !HitSound.isPlaying)
             && hitPoints.CollisionDamage > 0)

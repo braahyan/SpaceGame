@@ -1,38 +1,35 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 
 public class Seeker : ShipBase
 {
     private GameObject Target;
     public string TargetTag = "Player";
-    public string ReturnTag = null;
-    public float LookInterval = .5f;
+    public string ReturnTag;
     public float SeekDistance = 20f;
-    private float mLastLook;
 
     // Update is called once per frame
     protected override void Update()
     {
-        var delta = Time.time - mLastLook;
-        if (Target != null && delta <= LookInterval)
+        if (Target != null)
         {
             var difference = (Target.transform.position - transform.position).normalized;
             Move(difference.x, difference.y);
         }
-        else if (string.IsNullOrWhiteSpace(ReturnTag) || delta >= LookInterval)
+        else
         {
-            Move(Velocity.x, Velocity.y);
-            mLastLook = Time.time;
+            Move(0, 0);
             var target = GameObject.FindWithTag(TargetTag);
-            if (SeekDistance <= 0 || (target.transform.position - this.transform.position).magnitude <= SeekDistance)
+            if (target != null && (SeekDistance <= 0 ||
+                                   (transform.position - target.transform.position).magnitude <= SeekDistance))
             {
                 Target = target;
             }
-        }
-        else
-        {
-            Move(Velocity.x, Velocity.y);
-            mLastLook = Time.time;
-            Target = GameObject.FindWithTag(ReturnTag);
+
+            if (Target == null && !string.IsNullOrEmpty(ReturnTag))
+            {
+                Target = GameObject.FindWithTag(ReturnTag);
+            }
         }
     }
 }

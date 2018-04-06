@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
 
 public class Bullet : ShipBase
 {
-    protected override void Update()
+    protected void Start()
     {
-        Move(Direction.x, Direction.y);
+        
+        var thing = Direction.normalized * Speed;
+        GetComponent<Rigidbody2D>().velocity = thing;
     }
-
+    
     public Vector3 Direction { get; set; }
+    public int Speed = 30;
 }
